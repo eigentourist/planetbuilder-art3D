@@ -44,6 +44,6 @@ Before we begin rendering letters, let's see if we can capture that baseline sha
 Try drawing a line of medium thickness that follows the baseline described above, against a black background.  
 Use a color that resembles the cream on an old fashioned orange cream soda from a 1950s American drugstore.
 
-Try leveling off the ascent of the line gently, as you pass into the last 25 percent of its length.
-Our goal is to reach horizontal just as we finish drawing the line.
+This time, Let's begin gently leveling off the ascent of the line as we pass into the last 40 percent of its length.
+Our goal now is to reach horizontal as we go into the last 10 percent of the line.
 
