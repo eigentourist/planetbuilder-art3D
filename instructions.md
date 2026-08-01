@@ -41,9 +41,9 @@ to orbit.
 
 Before we begin rendering letters, let's see if we can capture that baseline shape.
 
-Try drawing a line of medium thickness that follows the baseline described above, against a black background.  
-Use a color that resembles the cream on an old fashioned orange cream soda from a 1950s American drugstore.
+This is going to be a new design iteration, so increment the design version number and reset experiment number.
 
-This time, Let's begin gently leveling off the ascent of the line as we pass into the last 40 percent of its length.
-Our goal now is to reach horizontal as we go into the last 10 percent of the line.
+Our goal this time is to split the line we've created into two identical lines, one above the other.
+Make the spacing between the two lines roughly equivalent to twice the thickness of one line.
+Retain the black background, and leave the line color unchanged..  
 
