@@ -41,5 +41,7 @@ to orbit.
 
 Before we begin rendering letters, let's see if we can capture that baseline shape.  
 
-Now that we know ten degrees of clockwise rotation is a bit much, let's try just five degrees of rotation.  
+We are close enough now to the overall shape of the logo that we can use more precise information.  
+To obtain that, let's reduce the thickness of the lines by roughly 50 percent. This should give us a  
+clearer view of the negative space between the lines.
 
