@@ -39,11 +39,14 @@ to orbit.
 
 ### Current Design Phase: Establish baseline shape
 
-Before we begin rendering letters, let's see if we can capture that baseline shape.
+Before we begin rendering letters, let's see if we can capture that baseline shape.  
 
-This is going to be a new design iteration, so increment the design version number and reset experiment number.
+Now that we have a pair of lines to work with, we can capture the line that follows  
+the top of the logo as well as the baseline that follows the bottom of the logo.  
 
-Our goal this time is to split the line we've created into two identical lines, one above the other.
-Make the spacing between the two lines roughly equivalent to twice the thickness of one line.
-Retain the black background, and leave the line color unchanged..  
+First, let's move the position of the bottom line down by roughly the width of two lines.  
+Then, let's alter the top line so that its overall arc is wider by roughly 20 percent.  
+
+We are aiming to create more empty space between the two lines as they begin on the left, and then have  
+them slowly converge to being parallel as they finish on the right.  
 
