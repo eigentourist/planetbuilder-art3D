@@ -43,7 +43,11 @@ A notes file should contain:
 - an interpretation of the instructions given for that run  
 - observations on whether the latest preview image fulfills the aim of the current  
   design iteration  
-- comparison of the latest preview image with the previous one, if it exists
+- a comparison of the latest preview image with the previous preview image, if it exists,
+  including cases where the previous preview is the final preview of the preceding version
+
+Note files from prior runs are to be treated as historical and not overwritten.
+This convention is meant to capture a history of decisions as the overall logo design evolves.
 
 If a prompt is unclear, do not make any file modifications or invoke blender,  
 but instead report on the part that lacks clarity and stop.  
