@@ -41,12 +41,8 @@ to orbit.
 
 Before we begin rendering letters, let's see if we can capture that baseline shape.  
 
-Now that we have a pair of lines to work with, we can capture the line that follows  
-the top of the logo as well as the baseline that follows the bottom of the logo.  
+Let's take the top line and try rotating the entire thing clockwise by roughly ten degrees.  
 
-First, let's move the position of the bottom line down by roughly the width of two lines.  
-Then, let's alter the top line so that its overall arc is wider by roughly 20 percent.  
-
-We are aiming to create more empty space between the two lines as they begin on the left, and then have  
-them slowly converge to being parallel as they finish on the right.  
+I'm looking for a way to widen the gap between the lines on the left, and close it further on the right.  
+This might be a simple way to achieve that.  
 
