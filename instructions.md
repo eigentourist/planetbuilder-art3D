@@ -41,8 +41,5 @@ to orbit.
 
 Before we begin rendering letters, let's see if we can capture that baseline shape.  
 
-Let's take the top line and try rotating the entire thing clockwise by roughly ten degrees.  
-
-I'm looking for a way to widen the gap between the lines on the left, and close it further on the right.  
-This might be a simple way to achieve that.  
+Now that we know ten degrees of clockwise rotation is a bit much, let's try just five degrees of rotation.  
 
