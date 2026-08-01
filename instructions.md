@@ -37,11 +37,27 @@ would be if it were a section of a circle. Instead, the logo follows a more loga
 the trajectory of a rocket from its initial launch through its transition to horizontal flight as it ascends  
 to orbit.  
 
-### Current Design Phase: Establish baseline shape
+### Current Design Phase: Review Python script  
 
-Before we begin rendering letters, let's see if we can capture that baseline shape.  
+Now that we have a good reproduction of the overall shape of the logo, this is a good moment to check on some  
+details in our code.  
 
-We are close enough now to the overall shape of the logo that we can use more precise information.  
-To obtain that, let's reduce the thickness of the lines by roughly 50 percent. This should give us a  
-clearer view of the negative space between the lines.
+The game itself is a 2D game, but much of its artwork was created first in a 3D modeling/animation program similar  
+to Blender, and then rendered out into animation frames.  
+
+In addition, the title screen where this logo will appear was originally created in Photoshop, but employs a  
+number of techniques to give depth to the scene.  
+
+One desirable objective in this logo remake is to create a logo that is a 3D object that can be saved in glTF 2.0  
+format, loaded into Godot, where the game is being rebuilt, and used there to create some subtle effects that  
+give more life to the title screen than a static image.
+
+Examine the Python script and identify all parts of the code that might be configured to use exclusively 2D    
+capability. Report the current state of the code, and list all the changes that may need to be made in order  
+to create the logo as a 3D object and save it in glTF 2.0 format, specifically as a GLB file.
+
+Do not make any changes to the code yet, and do not invoke Blender. We will increment the version number  
+and reset the experiment number on the next set of files we create, but at the moment, we are conducting  
+a read-only review.
+
 
