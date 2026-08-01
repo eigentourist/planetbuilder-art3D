@@ -24,10 +24,10 @@ Start version numbers with 001 and increment by 1 only when instructed to start 
 
 Start experiment numbers with 001 and increment by 1 on each run.
 
-When instructed to start a new script version, reset the experiment number to 000.
+When instructed to start a new script version, reset the experiment number to 001.
 
-Python scripts prior to the current version should be treated as  
-historical and not overwritten.  
+Python scripts prior to the current version number and experiment number should be treated  
+as historical and not overwritten.  
 
 .blend files and preview files prior to the current version number and  
 experiment number should be treated as historical and not overwritten.
