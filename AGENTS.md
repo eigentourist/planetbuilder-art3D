@@ -69,3 +69,9 @@ candidates for use on the logo. If a font other than the one in use seems better
 suited to the current design objective, recommend changing to that font in your  
 notes for that run. Do not begin using a different font without approval.
 
+The exports/ directory has been added for saving .glb files. We will save a .glb file  
+when we are ready to test a 3D object in Godot. If this workflow works well, we may create  
+and export other objects for use in the title screen.
+
+Name export files in the form 'logo-XXX-YYY.glb' using the version number and experiment number.  
+

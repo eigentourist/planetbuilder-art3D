@@ -37,27 +37,87 @@ would be if it were a section of a circle. Instead, the logo follows a more loga
 the trajectory of a rocket from its initial launch through its transition to horizontal flight as it ascends  
 to orbit.  
 
-### Current Design Phase: Review Python script  
+### Current Design Phase: Plan refactor of Python script  
 
-Now that we have a good reproduction of the overall shape of the logo, this is a good moment to check on some  
-details in our code.  
+Describe a plan for refactoring the Python script to create the logo as a 3D object.
 
-The game itself is a 2D game, but much of its artwork was created first in a 3D modeling/animation program similar  
-to Blender, and then rendered out into animation frames.  
+Here is a copy of your proposed refactor plan for version 003, for reference.
+1. Preserve the current XY guide geometry and 5° upper-line rotation.
+2. Change guide curves from dimensions = "2D" to "3D".
+3. Explicitly set full curve fill behavior while retaining bevel depth, bevel resolution, and capped ends.
+4. Replace the emission-only guide material with a glTF-compatible Principled BSDF material:
+   - same cream color;
+   - no metallic response;
+   - high roughness;
+   - specular contribution reduced as far as practical.
 
-In addition, the title screen where this logo will appear was originally created in Photoshop, but employs a  
-number of techniques to give depth to the scene.  
+5. Retain the guides at Z = 0.
+6. Replace the flat presentation setup with a front-facing 3D scene:
+   - camera centered directly in front of the geometry;
+   - enough distance and framing margin to show all geometry;
+   - soft-white area light above the camera at the same Z position;
+   - preserve the black background unless instructed otherwise.
 
-One desirable objective in this logo remake is to create a logo that is a 3D object that can be saved in glTF 2.0  
-format, loaded into Godot, where the game is being rebuilt, and used there to create some subtle effects that  
-give more life to the title screen than a static image.
+7. Add closed face geometry separately from the temporary guides. Extrude it along Z and add modest beveling so the front, back, and side surfaces read as a solid object.
+8. Generate normals and sensible UV coordinates on the solid mesh.
+9. Retain the existing .blend and PNG preview workflow.
+10. Add GLB export after saving and rendering:
+    - convert exportable curve or face geometry to meshes;
+    - apply transforms;
+    - export only intended logo geometry;
+    - exclude camera, lighting, and temporary guides unless requested;
+    - use Blender’s glTF exporter with export_format="GLB".
 
-Examine the Python script and identify all parts of the code that might be configured to use exclusively 2D    
-capability. Report the current state of the code, and list all the changes that may need to be made in order  
-to create the logo as a 3D object and save it in glTF 2.0 format, specifically as a GLB file.
+11. Validate that the GLB has the intended scale, orientation, origin, materials, normals, and mesh contents for Godot.
 
-Do not make any changes to the code yet, and do not invoke Blender. We will increment the version number  
-and reset the experiment number on the next set of files we create, but at the moment, we are conducting  
-a read-only review.
+Here are some responses to the information still needed before implementation:
+- What should the “closed logo faces” represent at this stage?
+  - Let's go with an extruded round ribbon for now.
 
+- What extrusion depth and bevel width should the solid use?
+  - Let's start with an extrusion depth of 0.105 Blender units, matching the diameter after the 50% reduction..
+  - I am making a judgment call on bevel width, but let's try a width of 2 millimeters and see how it looks -- and let me know if that is a sensible answer or not,  
+
+- Should the next preview retain a straight-on orthographic camera, or use a straight-on perspective camera? A perfectly frontal view will show limited depth without an angled secondary surface or cast shadows.
+  - Let's try a straight-on perspective camera for the next preview, and in later experiments, after we have nailed down font choices, 3D letter details, and materials, we will start to move the camera. 
+
+- Should the black background remain an environment-only preview background, or should a physical backdrop receive shadows?
+  - the black background should remain environment-only, because we only want to export the logo into Godot, not other scene elements.
+
+- Approximate area-light size, energy, and distance are unspecified. These can be chosen artistically if exact values are unnecessary.
+  - Make initial choices for these parameters artistically, and we can iterate through any needed adjustments afterward.
+
+- Should the guides be included in the first GLB as temporary geometry, or excluded from export immediately?
+  - Excluded from all exports. We're going to create the actual logo lettering and remove the guides before we do a GLB export - this may require a few iterations, but the guides are there mainly to help guide the flow of the logo characters when we create them.
+
+- AGENTS.md defines locations and names for scripts, .blend files, previews, and notes, but not GLB files. A destination directory and naming convention are needed before exporting—for example, exports/logo-003-001.glb.
+  - an exports/ directory has been created for saving GLB files, and information about it has been added to AGENTS.md.
+
+- The intended Godot scale is unspecified. A conversion such as one Blender unit equaling one meter should be confirmed.
+  - Let's confirm that one Blender unit equals one meter for now, and if we have issues later, we can modify the scale later.
+
+- The desired object origin/pivot is unspecified: composition center, geometric center, baseline center, or another gameplay-oriented location.
+  - Let's begin with geometric center for now, and if necessary, we can change to another origin/pivot later.
+
+- A uniform cream material requires no meaningful UV layout. If gradients or textures are expected soon, the desired mapping direction and texture workflow should be established.  
+  - Let's use one shared UV map or atlas for the entire logo.
+  - Let front faces use planar projection while retaining their positions in a common logo-wide coordinate system.
+  - Each disconnected glyph may have its own front island, but all front islands share one global left-to-right U range.
+  - Let each glyph’s side wall use a continuous strip where topology permits.
+  - Let back faces use separate islands.
+  - No glyph should independently reset the global horizontal texture coordinate.
+  - Bake Blender procedural effects into PBR image textures before export.
+  - Where possible, keep the workflow PBR-compatible.
+
+- The game is a mobile game currently running on iOS and to be released for Android, and it has a well-established  
+  track record of running well on older devices due to extra effort expended on efficient code and efficient handling
+  of graphical assets.
+- To preserve that track record, we should prefer to bake / pre-render effects that might require complex processing  
+  to render dynamically in Godot.
+- After finalizing choice of font, we will convert the entire logo to a mesh to obtain a shared coordinate basis.
+
+
+
+
+Do not yet make changes to the Python script. Instead, list any information that is needed but not provided here.   
 
