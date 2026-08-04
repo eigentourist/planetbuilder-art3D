@@ -74,4 +74,22 @@ when we are ready to test a 3D object in Godot. If this workflow works well, we 
 and export other objects for use in the title screen.
 
 Name export files in the form 'logo-XXX-YYY.glb' using the version number and experiment number.  
+Prior GLB exports are historical and should not be overwritten.
+
+A textures/ directory exists now for saving textures. Textures should be placed in this directory,  
+using the file name convention "logo-XXX-YYY-{map}-{resolution}.png".
+  Placeholder values:
+  {map}: basecolor, orm, normal, emission, or height
+  {resolution}: 2k, 1k, or 512
+
+
+  Examples:
+  logo-003-001-basecolor-2k.png
+  logo-003-001-orm-2k.png
+  logo-003-001-orm-1k.png
+  logo-003-001-normal-512.png
+  logo-003-001-emission-1k.png
+  logo-003-001-height-2k.png
+
+Treat existing texture files as historical and do not overwrite them.
 
