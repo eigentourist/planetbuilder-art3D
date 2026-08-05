@@ -48,8 +48,8 @@ to orbit.
   - Rotate the mesh positive 15 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
   - Rotate the guides positive 15 degrees around the Y axis to match orientation with the mesh.
   - Fit the mesh into the negative space within the guides.
-  - Increase occupancy of the guide corridor while preserving the established character proportions.
-  - Rotate the guides and the mesh positive 5 degrees around the Z axis.
+  - Increase horizontal occupancy on the left side of the guide corridor, gradually widening the letters from right to left as needed, but not widening the space between letters.
+  - Rotate the guides and the mesh positive 4 degrees around the Z axis.
   
 
 - Details needed for creating logo preserved here:
