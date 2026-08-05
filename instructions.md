@@ -41,11 +41,20 @@ to orbit.
 
 - The text of the logo is "PLANETBUILDER", all in uppercase.
 - We will continue using the Days One font. 
-- Let's expand this sequence of steps that helped solve the character spacing issue:
-  - First, create the 3d text object.
-  - Next, convert the 3d text object into a mesh.
-  - Then, rotate the mesh 45 degrees counter-clockwise on the X axis.
-  - Finally, try to fit the mesh into the negative space within the guides.
+- Let's adjust this sequence of steps a bit further:
+  - Create the 3d text object.
+  - Convert the 3d text object into a mesh.
+  - Rotate the mesh positive 35 degrees around the X axis.
+  - Rotate the mesh positive 15 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
+  - Rotate the guides positive 15 degrees around the Y axis to match orientation with the mesh.
+  - Try to fit the mesh into the negative space within the guides.
+  
+Here are some notes that explain the goal we are aiming at with the steps above:
+We want to reduce the current pitch slightly, retaining most of the depth effect we have created. 
+Then, we want to introduce a modest positive yaw so the left side advances toward the camera 
+while the right side recedes. The goal is not to emphasize the rotation itself, 
+but to enhance the perception that the logo occupies three-dimensional space while retaining 
+the established silhouette.
 
 - Details needed for creating logo preserved here:
   - Texture Policy
