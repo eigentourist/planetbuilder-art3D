@@ -40,7 +40,11 @@ to orbit.
 ### Current Design Phase: Initial font test  
 
 - The text of the logo is "PLANETBUILDER", all in uppercase.
-- Let's change the font to Days_One.
+- We will continue using Days One for now. 
+- Let's try to improve the character spacing issue with this sequence of steps:
+  - First, create the 3d text object
+  - Next, convert the 3d text object into a mesh
+  - Finally, try to fit the mesh into the negative space within the guides.
 
 - Details needed for creating logo preserved here:
   - Texture Policy
