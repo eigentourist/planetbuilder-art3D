@@ -42,14 +42,14 @@ to orbit.
 - The text of the logo is "PLANETBUILDER", all in uppercase.
 - We will continue using the Days One font. 
 - Let's adjust this sequence of steps a bit further:
-  - Create the 3d text object.
-  - Convert the 3d text object into a mesh.
-  - Rotate the mesh positive 20 degrees around the X axis.
-  - Rotate the mesh positive 15 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
-  - Rotate the guides positive 15 degrees around the Y axis to match orientation with the mesh.
-  - Fit the mesh into the negative space within the guides.
+  - Create one 3D text object for each character, positioning them to preserve the Days One font’s original character advances and kerning.
+  - Convert each character’s text object into a separate mesh.
+  - Rotate all character meshes together as a group positive 20 degrees around the X axis, using a shared pivot.
+  - Rotate the entire group of meshes positive 15 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
+  - Rotate the guides positive 15 degrees around the Y axis to match orientation with the meshes.
+  - Fit the meshes into the negative space within the guides.
   - Increase horizontal occupancy on the left side of the guide corridor, gradually widening the letters from right to left as needed, but not widening the space between letters.
-  - Rotate the guides and the mesh positive 4 degrees around the Z axis.
+  - Rotate the guides and the meshes, as a group, positive 4 degrees around the Z axis.
   
 
 - Details needed for creating logo preserved here:
