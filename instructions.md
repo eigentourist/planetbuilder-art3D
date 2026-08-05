@@ -48,7 +48,6 @@ to orbit.
   - Rotate the entire group of meshes positive 15 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
   - Rotate the guides positive 15 degrees around the Y axis to match orientation with the meshes.
   - Fit the meshes into the negative space within the guides.
-  - Increase horizontal occupancy on the left side of the guide corridor, gradually widening the letters from right to left as needed, but not widening the space between letters.
   - Rotate the guides and the meshes, as a group, positive 4 degrees around the Z axis.
 
 - We are going to introduce a three-light arrangement whose purpose is to improve edge definition and reveal the existing geometry. 
@@ -71,6 +70,9 @@ to orbit.
     - Position: Behind and above the logo
     - Intensity: 0.5
     - Size: Medium
+    
+- Bring the camera 10 percent closer on the Z axis.
+- Move the key light and fill light so that they keep their relative position to the camera.
 
 - Details needed for creating logo preserved here:
   - Texture Policy
