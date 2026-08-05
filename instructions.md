@@ -39,16 +39,8 @@ to orbit.
 
 ### Current Design Phase: Initial font test  
 
-- This will be a new design phase, so increment your version number and reset your experiment number.
-
-- Noting that the change to a 3D scene with perspective camera has changed the apparent color of the guides,
-  we can proceed to a first attempt at fitting characters into the negative space defined by the guides.
-  Since the guide shapes will eventually be removed, we are concerned mainly with the look of the logo.
 - The text of the logo is "PLANETBUILDER", all in uppercase.
-- Our first goal will be to fit the text within the guides.
-- You are authorized to examine the fonts/ subdirectory and choose an initial font based on the retro sci-fi
-  artistic guidance earlier in this file.
-
+- Let's change the font to Days_One.
 
 - Details needed for creating logo preserved here:
   - Texture Policy
