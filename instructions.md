@@ -37,11 +37,11 @@ would be if it were a section of a circle. Instead, the logo follows a more loga
 the trajectory of a rocket from its initial launch through its transition to horizontal flight as it ascends  
 to orbit.  
 
-### Current Design Phase: Initial font test  
+### Current Design Phase: Lighting and refining shape  
 
 - The text of the logo is "PLANETBUILDER", all in uppercase.
 - We will continue using the Days One font. 
-- Let's adjust this sequence of steps a bit further:
+- Here is our sequence of steps for creating and shaping the logo:
   - Create one 3D text object for each character, positioning them to preserve the Days One font’s original character advances and kerning.
   - Convert each character’s text object into a separate mesh.
   - Rotate all character meshes together as a group positive 20 degrees around the X axis, using a shared pivot.
@@ -50,7 +50,27 @@ to orbit.
   - Fit the meshes into the negative space within the guides.
   - Increase horizontal occupancy on the left side of the guide corridor, gradually widening the letters from right to left as needed, but not widening the space between letters.
   - Rotate the guides and the meshes, as a group, positive 4 degrees around the Z axis.
-  
+
+- We are going to introduce a three-light arrangement whose purpose is to improve edge definition and reveal the existing geometry. 
+  Lighting should remain soft and should not create harsh shadows or strong specular hotspots.
+  - First light
+    - Name: Key Light
+    - Type: Area light
+    - Position: above, left, and slightly in front of the camera
+    - Intensity: 1.0
+    - Size: Large
+  - Second light (this replaces the existing light we have been using)
+    - Name: Fill Light
+    - Type: Area light
+    - Position: Slightly above the camera
+    - Intensity: 0.3
+    - Size: Large
+  - Third light
+    - Name: Rim Light
+    - Type: Area light
+    - Position: Behind and above the logo
+    - Intensity: 0.5
+    - Size: Medium
 
 - Details needed for creating logo preserved here:
   - Texture Policy
