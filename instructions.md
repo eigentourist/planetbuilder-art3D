@@ -32,28 +32,28 @@ The existing logo of the game draws from those influences in its use of both col
 of warm colors, using red and orange. Highlights are done using cream/off-white, and shadows have a hint of  
 purple in them.
 
-The shape of the logo follows a gentle arc from left to right. The arc is not completely symmetrical, as it  
-would be if it were a section of a circle. Instead, the logo follows a more logarithmic baseline that resembles  
-the trajectory of a rocket from its initial launch through its transition to horizontal flight as it ascends  
-to orbit.  
+The shape of the logo follows a gentle arc from left to right, as if it sat on the upper left quarter of  
+a circle. 
 
 ### Current Design Phase: Lighting and refining shape  
 
 - The text of the logo is "PLANETBUILDER", all in uppercase.
-- We will continue using the Days One font. 
+- We will continue using the Days One font.  
 
-- Relax the left-hand curvature slightly so the logo suggests a launch trajectory rather than explicitly tracing one. 
-- Preserve the right-hand convergence and overall silhouette.
+- For the sake of experimentation, let's assume the arc that forms the baseline of the logo  
+  has a radius of 1 Blender unit.
+- Character size and spacing should remain approximately established, allowing the word to cover
+  more than 90 degrees or wrap around the circle.
+- Each character should rotate around Z to follow the local tangent of the circular baseline.
+- Placement on the arc should happen before the shared X=20 degrees and Y=10 degrees rotations.
+
 
 - Here is our sequence of steps for creating and shaping the logo:
   - Create one 3D text object for each character, positioning them to preserve the Days One font’s original character advances and kerning.
   - Convert each character’s text object into a separate mesh.
   - Rotate all character meshes together as a group positive 20 degrees around the X axis, using a shared pivot.
   - Rotate the entire group of meshes positive 10 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
-  - Rotate the guides positive 10 degrees around the Y axis to match orientation with the meshes.
-  - Shape the meshes so that they flow along the negative space between the guides, but allow the font features to violate the guides
-    by up to 3 percent, so that we can preserve some creative decisions made by the font designers.
-    
+     
 - Let's modify the default material being used for the character meshes.
   - Our primary change is going to be a color gradient that spans the entire logo,
     moving from left to right in color and roughness.
@@ -91,7 +91,6 @@ to orbit.
 - Bring the camera 10 percent closer on the Z axis.
 - Move the key light and fill light so that they keep their relative position to the camera.
 
-- After the character meshes of the logo are positioned within the guide space, remove the curved guides from the scene.
 
 - Details needed for creating logo preserved here:
   - Texture Policy
