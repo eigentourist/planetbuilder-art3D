@@ -41,6 +41,10 @@ to orbit.
 
 - The text of the logo is "PLANETBUILDER", all in uppercase.
 - We will continue using the Days One font. 
+
+- Relax the left-hand curvature slightly so the logo suggests a launch trajectory rather than explicitly tracing one. 
+- Preserve the right-hand convergence and overall silhouette.
+
 - Here is our sequence of steps for creating and shaping the logo:
   - Create one 3D text object for each character, positioning them to preserve the Days One font’s original character advances and kerning.
   - Convert each character’s text object into a separate mesh.
@@ -55,7 +59,7 @@ to orbit.
   - First light
     - Name: Key Light
     - Type: Area light
-    - Position: above, left, and slightly in front of the camera
+    - Position: above, right, and slightly in front of the camera
     - Intensity: 1.0
     - Size: Large
   - Second light (this replaces the existing light we have been using)
@@ -67,9 +71,9 @@ to orbit.
   - Third light
     - Name: Rim Light
     - Type: Area light
-    - Position: Behind and above the logo
+    - Position: Behind the logo, above and toward the left side
     - Intensity: 0.5
-    - Size: Medium
+    - Size: Large
     
 - Bring the camera 10 percent closer on the Z axis.
 - Move the key light and fill light so that they keep their relative position to the camera.
