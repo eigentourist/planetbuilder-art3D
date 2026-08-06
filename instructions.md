@@ -45,7 +45,7 @@ a circle.
 - Character size and spacing should remain approximately established, allowing the word to cover
   more than 90 degrees or wrap around the circle.
 - Each character should rotate around Z to follow the local tangent of the circular baseline.
-- Placement on the arc should happen before the shared X=20 degrees and Y=20 degrees rotations.
+- Placement on the arc should happen after the shared X=20 degrees and Y=20 degrees rotations.
 
 
 - Here is our sequence of steps for creating and shaping the logo:
