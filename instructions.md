@@ -41,7 +41,7 @@ a circle.
 - We will continue using the Days One font.  
 
 - For the sake of experimentation, let's assume the arc that forms the baseline of the logo  
-  has a radius of 1 Blender unit.
+  has a radius of 10 Blender units.
 - Character size and spacing should remain approximately established, allowing the word to cover
   more than 90 degrees or wrap around the circle.
 - Each character should rotate around Z to follow the local tangent of the circular baseline.
