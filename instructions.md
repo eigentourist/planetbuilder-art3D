@@ -51,8 +51,8 @@ to orbit.
   - Rotate all character meshes together as a group positive 20 degrees around the X axis, using a shared pivot.
   - Rotate the entire group of meshes positive 15 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
   - Rotate the guides positive 15 degrees around the Y axis to match orientation with the meshes.
-  - Fit the meshes into the negative space within the guides.
-  - Rotate the guides and the meshes, as a group, positive 4 degrees around the Z axis.
+  - Shape the meshes so that they flow along the negative space between the guides, but allow the font features to violate the guides
+    by up to 3 percent, so that we can preserve some creative decisions made by the font designers.
 
 - We are going to introduce a three-light arrangement whose purpose is to improve edge definition and reveal the existing geometry. 
   Lighting should remain soft and should not create harsh shadows or strong specular hotspots.
