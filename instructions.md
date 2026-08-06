@@ -45,22 +45,22 @@ a circle.
 - Character size and spacing should remain approximately established, allowing the word to cover
   more than 90 degrees or wrap around the circle.
 - Each character should rotate around Z to follow the local tangent of the circular baseline.
-- Placement on the arc should happen before the shared X=20 degrees and Y=10 degrees rotations.
+- Placement on the arc should happen before the shared X=20 degrees and Y=20 degrees rotations.
 
 
 - Here is our sequence of steps for creating and shaping the logo:
   - Create one 3D text object for each character, positioning them to preserve the Days One font’s original character advances and kerning.
   - Convert each character’s text object into a separate mesh.
   - Rotate all character meshes together as a group positive 20 degrees around the X axis, using a shared pivot.
-  - Rotate the entire group of meshes positive 10 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
+  - Rotate the entire group of meshes positive 20 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
      
 - Let's modify the default material being used for the character meshes.
   - Our primary change is going to be a color gradient that spans the entire logo,
     moving from left to right in color and roughness.
   - We will transition (left to right) across four colors: red, orange, yellow, and cream.
   - Values for material roughness:
-    - Red will have roughness of 0.4
-    - Orange will have roughness of 0.3
+    - Red will have roughness of 0.3
+    - Orange will have roughness of 0.25
     - Yellow will have roughness of 0.2
     - Cream will have roughness of 0.1
   - Spread the transition evenly (each color and roughness level getting about 25 percent of the logo)
