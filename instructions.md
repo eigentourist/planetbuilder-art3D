@@ -74,6 +74,8 @@ to orbit.
 - Bring the camera 10 percent closer on the Z axis.
 - Move the key light and fill light so that they keep their relative position to the camera.
 
+- After the character meshes of the logo are positioned within the guide space, remove the curved guides from the scene.
+
 - Details needed for creating logo preserved here:
   - Texture Policy
     - Author textures:
