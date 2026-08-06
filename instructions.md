@@ -53,6 +53,19 @@ to orbit.
   - Rotate the guides positive 10 degrees around the Y axis to match orientation with the meshes.
   - Shape the meshes so that they flow along the negative space between the guides, but allow the font features to violate the guides
     by up to 3 percent, so that we can preserve some creative decisions made by the font designers.
+    
+- Let's modify the default material being used for the character meshes.
+  - Our primary change is going to be a color gradient that spans the entire logo,
+    moving from left to right in color and roughness.
+  - We will transition (left to right) across four colors: deep red, orange, yellow, and cream.
+  - Values for material roughness:
+    - Red will have roughness of 0.45
+    - Orange will have roughness of 0.35
+    - Yellow will have roughness of 0.25
+    - Cream will have roughness of 0.15
+  - Spread the transition evenly (each color and roughness level getting about 25 percent of the logo)
+  - Keep highlights soft so as to avoid hot spots.
+  - Allow bevels to catch light.
 
 - We are going to introduce a three-light arrangement whose purpose is to improve edge definition and reveal the existing geometry. 
   Lighting should remain soft and should not create harsh shadows or strong specular hotspots.
