@@ -49,8 +49,8 @@ to orbit.
   - Create one 3D text object for each character, positioning them to preserve the Days One font’s original character advances and kerning.
   - Convert each character’s text object into a separate mesh.
   - Rotate all character meshes together as a group positive 20 degrees around the X axis, using a shared pivot.
-  - Rotate the entire group of meshes positive 15 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
-  - Rotate the guides positive 15 degrees around the Y axis to match orientation with the meshes.
+  - Rotate the entire group of meshes positive 10 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
+  - Rotate the guides positive 10 degrees around the Y axis to match orientation with the meshes.
   - Shape the meshes so that they flow along the negative space between the guides, but allow the font features to violate the guides
     by up to 3 percent, so that we can preserve some creative decisions made by the font designers.
 
