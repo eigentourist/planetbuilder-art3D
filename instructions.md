@@ -57,12 +57,12 @@ to orbit.
 - Let's modify the default material being used for the character meshes.
   - Our primary change is going to be a color gradient that spans the entire logo,
     moving from left to right in color and roughness.
-  - We will transition (left to right) across four colors: deep red, orange, yellow, and cream.
+  - We will transition (left to right) across four colors: red, orange, yellow, and cream.
   - Values for material roughness:
-    - Red will have roughness of 0.45
-    - Orange will have roughness of 0.35
-    - Yellow will have roughness of 0.25
-    - Cream will have roughness of 0.15
+    - Red will have roughness of 0.4
+    - Orange will have roughness of 0.3
+    - Yellow will have roughness of 0.2
+    - Cream will have roughness of 0.1
   - Spread the transition evenly (each color and roughness level getting about 25 percent of the logo)
   - Keep highlights soft so as to avoid hot spots.
   - Allow bevels to catch light.
