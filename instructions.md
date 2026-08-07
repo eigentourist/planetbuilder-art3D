@@ -51,7 +51,7 @@ a circle.
 - Here is our sequence of steps for creating and shaping the logo:
   - Create one 3D text object for each character, positioning them to preserve the Days One font’s original character advances and kerning.
   - Convert each character’s text object into a separate mesh.
-  - Rotate all character meshes together as a group positive 13 degrees around the X axis, using a shared pivot.
+  - Rotate all character meshes together as a group positive 10 degrees around the X axis, using a shared pivot.
   - Rotate the entire group of meshes positive 45 degrees around the Y axis, so the left side advances toward the camera while the right side recedes.
      
 - Let's modify the default material being used for the character meshes.
@@ -84,7 +84,7 @@ a circle.
   - Third light
     - Name: Rim Light
     - Type: Area light
-    - Position: Behind the logo, above and toward the left side
+    - Position: Behind the logo, above and center
     - Intensity: 0.5
     - Size: Large
     
