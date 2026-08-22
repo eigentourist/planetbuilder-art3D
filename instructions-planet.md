@@ -1,4 +1,4 @@
-# Instructions.md  
+# instructions-planet.md  
 
 This file contains artistic instructions for building the planet for the game title screen.  
 
@@ -28,19 +28,51 @@ is retro sci-fi, with artistic inspiration from films such as Forbidden Planet a
 
 ### About the planet  
 
-The existing planet in the title screen is a forest planet, large enough to qualify as a dwarf planet,
-and probably retaining a thin atmosphere.
+The forest planet in the title screen is an earth-sized planet, with vegetation and features that hint at
+more sophisticated life on the surface.
 
-The planet can reliably be made from creating a sphere mesh and applying the "forest-planet.png" texture  
-found in the textures/ directory.
+The planet can be made from creating a sphere mesh and applying the "forest-planet.png" texture  
+found in the textures/ directory. There is also a subfolder there that contains images for height,  
+normal, orm, and roughness, all in png format.
+The named desert-moon and forest-planet files are reusable authored source textures and are not  
+governed by the generated experiment-texture naming convention.
 
-### Current Design Phase: Explore relative positions in 3D space  
+Preview files should be generated at 1200×675 resolution.
+Use the Eevee rendering engine.
 
+### Current Design Phase: Create the forest planet in 3D space  
 
 - Here is our sequence of steps for creating the planet:
   - Create one sphere mesh with a radius of 3 Blender units.
   - Apply the textures/forest-planet.png texture to the sphere mesh.
-     
+  - Maps for height, normal, orm, and roughness:
+    - textures/forest-planet/forest-planet_height.png
+    - textures/forest-planet/forest-planet_normal.png
+    - textures/forest-planet/forest-planet_orm.png
+    - textures/forest-planet/forest-planet_roughness.png
+- Some guidance for using these files:
+  - Use roughness from the ORM map’s green channel; retain the separate roughness image only as a source/reference file.
+  - Use the height map for bump shading only.
+  - Treat the normal map as tangent-space OpenGL/Y+.
+  - base-color image (textures/forest-planet.png): Principled BSDF Base Color, sRGB.
+  - ORM: separate RGB channels, Non-Color.
+  - normal: Normal Map node, Non-Color.
+  - height: bump shading only, no mesh displacement, Non-Color.
+- Use a standard equirectangular UV sphere. 
+- Put the longitudinal seam on the rear side and orient the most visually interesting region 
+  toward the camera.
+- Use a perspective camera, and start with Blender's default focal length of 50mm.
+- We can iterate through focal length adjustments as needed.
+- For now, place the camera to create a centered composition.
+- The planet should occupy roughly 1/3 of the frame height.
+- Use a black background color.
+- Where possible, choose a UV-sphere resolution substantially below 25,000 triangles while maintaining a smooth rendered silhouette.
+- The base-color photographs contain baked tonal variation, and this is acceptable.
+- Feed the normal texture through a Normal Map node into the Normal input of a Bump node. 
+- Feed the height texture into that Bump node’s Height input, then connect the Bump node output to the Principled BSDF Normal input.
+- Begin with Normal Map strength 1.0, Bump strength 0.15, and Bump distance 0.1 Blender units. Adjust these values through later experiments.
+
+
 
 - We are going to introduce a three-light arrangement whose purpose is to improve edge definition and reveal the existing geometry. 
   Lighting should remain soft and should not create harsh shadows or strong specular hotspots.
@@ -48,38 +80,41 @@ found in the textures/ directory.
     - Name: Key Light
     - Type: Area light
     - Position: above, right, and slightly in front of the camera
-    - Intensity: 1.0
-    - Size: Large
+    - Intensity: 1000 watts
+    - Size: 1.5 m
   - Second light 
     - Name: Fill Light
     - Type: Area light
     - Position: Slightly above the camera
-    - Intensity: 0.3
-    - Size: Large
+    - Intensity: 600 watts
+    - Size: 1.5 m
   - Third light
     - Name: Rim Light
     - Type: Area light
-    - Position: Behind the logo, above and center
-    - Intensity: 0.5
-    - Size: Large
+    - Position: Behind the planet, above and center
+    - Intensity: 400 watts
+    - Size: 1.5 m
     
-- Bring the camera 10 percent closer on the Z axis.
-- Move the key light and fill light so that they keep their relative position to the camera.
-
 
 - Details needed for creating the planet preserved here:
   - Texture Policy
     - Author textures:
       - PNG
-      - 2048x2048
       - lossless
       - bit depth: 
         - 8-bit PNG for base color, ORM, emission, and normal
         - 16-bit grayscale PNG for height when displacement precision matters
+        - 8-bit grayscale PNG for height when using only as bump shading guide
       - PBR compatible
 
     - Packing:
-      - ORM packed: R = Ambient Occlusion, G = Roughness, B = Metallic
+      - ORM: Red = Ambient Occlusion, Green = Roughness, Blue = Metallic
+      
+    - Shader Use:
+      - Green should connect to Principled BSDF Roughness.
+      - Blue should connect to Principled BSDF Metallic.
+      - Do not apply the red ambient-occlusion channel in the initial Blender material;
+        retain it for Godot/export testing.
 
     - Color Space:
       - Base Color: sRGB
@@ -87,11 +122,6 @@ found in the textures/ directory.
       - ORM: Linear
       - Normal: Linear
       - Height: Linear
-
-    - UVs:
-      - One atlas.
-      - Consistent texel density.
-      - Preserve a global left-to-right coordinate basis.
 
     - Godot Import:
       - Enable mipmaps.
@@ -104,17 +134,17 @@ found in the textures/ directory.
       - Base color and emission: downsample with sRGB-aware filtering.
       - ORM: downsample each channel independently in linear space.
       - Normal: use vector-aware filtering and renormalize vectors afterward.
-      - Height: retain the 16-bit source for displacement; avoid downscaling unless specifically required.
-      - Avoid expensive runtime shaders unless an artistic benefit clearly justifies them.
+      - Height: For the current 8-bit height map, use bump shading only. If a 16-bit displacement  
+        source is authored later, retain that source and avoid downscaling it unless required.  
+      - Avoid expensive runtime shaders unless an artistic benefit clearly justifies them.  
 
     - Triangle budget: 
       - Use a provisional scene-wide budget of 200,000–500,000 visible triangles, with the final hard ceiling  
         determined through testing on the oldest supported device tier.
-      - Use an initial limit of 25,000 triangles for the planet, with a preference for substantially fewer  
-        whenever the silhouette remains visually smooth.
+      - Increase sphere resolution as needed for a smooth silhouette, but do not exceed 25,000 triangles without first requesting approval.
 
 - To Be Decided:
-  - A final moon-specific triangle target after lettering and bevel complexity are known.
+  - A final planet-specific triangle target after sphere tessellation and surface-detail requirements are known.
   - Identify the oldest supported device or performance tier for validation, prior to final export.
 
 
