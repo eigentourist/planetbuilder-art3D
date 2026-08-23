@@ -32,27 +32,36 @@ This file contains reproducible artistic and technical instructions for the nebu
 - Use `textures/example-base-layer-4k.png` directly as the shared sRGB color field.
 - Center-crop the 16:9 color field into each square layer without changing its aspect ratio.
 - Darken the sampled color field separately for each layer before baking.
-- Drive alpha with a four-dimensional Noise Texture and a high-contrast Color Ramp.
-- Use a different anisotropic coordinate scale and rotation for every mask.
+- Use `textures/example-noise1.png`, `example-noise2.png`, and `example-noise3.png` as the respective broad structural masks for cloud layers 01–03.
+- Center-crop each historical 4:3 mask into its square layer without stretching it.
+- Drive fine alpha variation with a four-dimensional Noise Texture and an `EASE`-interpolated Color Ramp.
+- Multiply the historical mask by the procedural alpha so the historical image controls broad organic structure and the procedural noise supplies restrained internal variation.
+- Use a subtly different, nearly isotropic coordinate scale and rotation for every procedural mask.
 - Bake each procedural plane separately against transparent film.
-- The experiment 001-002 color-ramp density stops are:
-  - position 0.54: alpha 0.0
-  - position 0.62: alpha 0.025
-  - position 0.71: alpha 0.48
-  - position 0.82: alpha 0.84
+- The experiment 001-004 procedural color-ramp density stops are:
+  - position 0.43: alpha 0.0
+  - position 0.53: alpha 0.10
+  - position 0.66: alpha 0.52
+  - position 0.82: alpha 0.80
+- Remap each historical grayscale mask through an `EASE` ramp with these stops:
+  - position 0.16: value 0.12
+  - position 0.42: value 0.38
+  - position 0.68: value 0.82
+  - position 0.90: value 1.0
 - Keep overall exposure dark, distribute clouds rather than filling the frame, and retain quieter negative space behind the centered logo.
 - Favor diffuse forms. Occasional filament-like forms must also remain soft and ephemeral.
 
 ### Cloud 01 — broad horizontal
 
 - Noise seed/W: 2.3
-- Scale: 2.0
+- Scale: 3.2
 - Detail: 4.5
 - Roughness: 0.66
 - Distortion: 0.30
-- Mapping scale: `(0.52, 1.55, 1.0)`
+- Mapping scale: `(0.92, 1.08, 1.0)`
 - Mapping rotation: −12 degrees
-- Color-field value multiplier: 0.38
+- Color-field value multiplier: 0.59
+- Historical structural mask: `textures/example-noise1.png`
 - Composite rotation: −8 degrees
 - Composite offset: `(-2.8, 1.7)`
 - Composite scale: `(1.20, 1.15)`
@@ -61,13 +70,14 @@ This file contains reproducible artistic and technical instructions for the nebu
 ### Cloud 02 — diagonal
 
 - Noise seed/W: 9.1
-- Scale: 2.35
+- Scale: 3.6
 - Detail: 5.2
 - Roughness: 0.70
 - Distortion: 0.42
-- Mapping scale: `(1.65, 0.48, 1.0)`
+- Mapping scale: `(1.08, 0.92, 1.0)`
 - Mapping rotation: +31 degrees
-- Color-field value multiplier: 0.34
+- Color-field value multiplier: 0.55
+- Historical structural mask: `textures/example-noise2.png`
 - Composite rotation: +11 degrees
 - Composite offset: `(2.8, -1.8)`
 - Composite scale: `(1.24, 1.17)`
@@ -76,13 +86,14 @@ This file contains reproducible artistic and technical instructions for the nebu
 ### Cloud 03 — diffuse filaments
 
 - Noise seed/W: 16.7
-- Scale: 3.8
+- Scale: 4.2
 - Detail: 3.0
 - Roughness: 0.56
 - Distortion: 0.78
-- Mapping scale: `(0.34, 2.65, 1.0)`
+- Mapping scale: `(0.82, 1.18, 1.0)`
 - Mapping rotation: −38 degrees
-- Color-field value multiplier: 0.46
+- Color-field value multiplier: 0.66
+- Historical structural mask: `textures/example-noise3.png`
 - Composite rotation: −4 degrees
 - Composite offset: `(0.7, 0.3)`
 - Composite scale: `(1.13, 1.13)`
@@ -99,4 +110,4 @@ This file contains reproducible artistic and technical instructions for the nebu
 
 ## Iteration note
 
-Experiment 001-001 established the pipeline, but its alpha coverage and brightness produced a field that was too solid and uniform. Experiment 001-002 introduced the 4K color field, high-contrast masks, anisotropic mapping, and true black separation. The second result is too dark and its masks are too hard and band-like, so subsequent work should soften mask boundaries and raise visible cloud coverage modestly without returning to uniform full-frame opacity.
+Experiment 001-001 established the pipeline, but its alpha coverage and brightness produced a field that was too solid and uniform. Experiment 001-002 introduced the 4K color field, high-contrast masks, anisotropic mapping, and true black separation, but was too dark and band-like. Experiment 001-003 broadened and softened the masks and improved visibility, although horizontal banding remained in the lower-right amber cloud. Experiment 001-004 uses the historical production noise images for broad structure and restrained procedural noise for internal variation. This resolves most of the regular banding and produces more organic silhouettes while preserving a dark central region, although it is somewhat darker and more subdued than 001-003.
