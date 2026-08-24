@@ -32,6 +32,15 @@ This file contains reproducible artistic and technical instructions for the nebu
 - Use `textures/example-base-layer-blurred-4k.png` directly as the shared sRGB color field.
 - Center-crop the 16:9 color field into each square layer without changing its aspect ratio.
 - Darken the sampled color field separately for each layer before baking.
+- For cloud01 only, rotate the color-field coordinates +4 degrees around texture center after center-cropping. Do not rotate its alpha-mask coordinates.
+- For cloud03 only, apply a low-frequency nonlinear warp to the color-field coordinates after center-cropping. Do not warp its alpha-mask coordinates:
+  - four-dimensional Noise Texture
+  - W/seed: 23.7
+  - scale: 1.6
+  - detail: 2.0
+  - roughness: 0.45
+  - distortion: 0.10
+  - center the noise color around zero and use a UV displacement amplitude of 0.018
 - Use `textures/example-noise1.png`, `example-noise2.png`, and `example-noise3.png` as the respective broad structural masks for cloud layers 01–03.
 - Center-crop each historical 4:3 mask into its square layer without stretching it.
 - Drive fine alpha variation with a four-dimensional Noise Texture and an `EASE`-interpolated Color Ramp.
@@ -43,16 +52,21 @@ This file contains reproducible artistic and technical instructions for the nebu
   - position 0.53: alpha 0.10
   - position 0.66: alpha 0.52
   - position 0.82: alpha 0.80
-- Remap each historical grayscale mask through an `EASE` ramp with these stops:
-  - position 0.16: value 0.12
-  - position 0.42: value 0.38
-  - position 0.68: value 0.82
+- Remap the cloud01 and cloud02 historical masks through a higher-contrast `EASE` ramp with these stops:
+  - position 0.16: value 0.0
+  - position 0.42: value 0.10
+  - position 0.68: value 0.90
   - position 0.90: value 1.0
-- For cloud03 only, use a gentler `B_SPLINE` historical-mask ramp instead:
-  - position 0.12: value 0.18
-  - position 0.38: value 0.42
-  - position 0.72: value 0.78
-  - position 0.94: value 0.96
+- For cloud03, retain `B_SPLINE` interpolation while increasing contrast:
+  - position 0.12: value 0.0
+  - position 0.38: value 0.12
+  - position 0.72: value 0.90
+  - position 0.94: value 1.0
+- After contrast adjustment, approximate a conservative spatial alpha blur with five mask samples:
+  - center sample at weight 0.40
+  - left, right, up, and down samples at weight 0.15 each
+  - offset cardinal samples by 0.006 UV units, approximately 12 pixels at 2048×2048
+- Blur only the historical-mask contribution before multiplying it by procedural alpha. Do not blur RGB color data.
 - Keep overall exposure dark, distribute clouds rather than filling the frame, and retain quieter negative space behind the centered logo.
 - Favor diffuse forms. Occasional filament-like forms must also remain soft and ephemeral.
 
@@ -115,4 +129,4 @@ This file contains reproducible artistic and technical instructions for the nebu
 
 ## Iteration note
 
-Experiment 001-001 established the pipeline, but its alpha coverage and brightness produced a field that was too solid and uniform. Experiment 001-002 introduced the 4K color field, high-contrast masks, anisotropic mapping, and true black separation, but was too dark and band-like. Experiment 001-003 broadened and softened the masks and improved visibility, although horizontal banding remained in the lower-right amber cloud. Experiment 001-004 uses the historical production noise images for broad structure and restrained procedural noise for internal variation, resolving most of the regular banding while preserving a dark central region. Experiment 001-005 changes only the shared color source to the blurred 4K variant, smoothing broad color transitions without eliminating useful cloud texture. Experiment 001-006 gives cloud03 a gentler historical-mask remap in an attempt to smooth its lower-right bubble-like contour. The alpha transition improves slightly, but the colored circular contour largely remains, indicating that it primarily originates in the blurred color field rather than the mask.
+Experiment 001-001 established the pipeline, but its alpha coverage and brightness produced a field that was too solid and uniform. Experiment 001-002 introduced the 4K color field, high-contrast masks, anisotropic mapping, and true black separation, but was too dark and band-like. Experiment 001-003 broadened and softened the masks and improved visibility, although horizontal banding remained in the lower-right amber cloud. Experiment 001-004 uses the historical production noise images for broad structure and restrained procedural noise for internal variation, resolving most of the regular banding while preserving a dark central region. Experiment 001-005 changes only the shared color source to the blurred 4K variant, smoothing broad color transitions without eliminating useful cloud texture. Experiment 001-006 gives cloud03 a gentler historical-mask remap, but confirms that its colored circular contour primarily originates in the blurred color field. Experiment 001-007 applies higher contrast followed by a conservative five-tap blur to all three historical masks, producing cleaner dark separation while retaining diffuse edges. Experiment 001-008 rotates only cloud01's color coordinates by +4 degrees to disrupt the marked upper-left parallelogram-like contour; the contour becomes slightly less coherent but persists. Experiment 001-009 retains that rotation and adds a subtle low-frequency nonlinear warp to cloud03's color coordinates. The warp safely bends cloud03's color transitions but is too subtle to remove the marked composite contour.
