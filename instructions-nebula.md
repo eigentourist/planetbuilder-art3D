@@ -29,7 +29,7 @@ This file contains reproducible artistic and technical instructions for the nebu
 ## Procedural cloud construction
 
 - Build every cloud layer on an emission plane mixed with a Transparent BSDF.
-- Use `textures/example-base-layer-4k.png` directly as the shared sRGB color field.
+- Use `textures/example-base-layer-blurred-4k.png` directly as the shared sRGB color field.
 - Center-crop the 16:9 color field into each square layer without changing its aspect ratio.
 - Darken the sampled color field separately for each layer before baking.
 - Use `textures/example-noise1.png`, `example-noise2.png`, and `example-noise3.png` as the respective broad structural masks for cloud layers 01–03.
@@ -48,6 +48,11 @@ This file contains reproducible artistic and technical instructions for the nebu
   - position 0.42: value 0.38
   - position 0.68: value 0.82
   - position 0.90: value 1.0
+- For cloud03 only, use a gentler `B_SPLINE` historical-mask ramp instead:
+  - position 0.12: value 0.18
+  - position 0.38: value 0.42
+  - position 0.72: value 0.78
+  - position 0.94: value 0.96
 - Keep overall exposure dark, distribute clouds rather than filling the frame, and retain quieter negative space behind the centered logo.
 - Favor diffuse forms. Occasional filament-like forms must also remain soft and ephemeral.
 
@@ -110,4 +115,4 @@ This file contains reproducible artistic and technical instructions for the nebu
 
 ## Iteration note
 
-Experiment 001-001 established the pipeline, but its alpha coverage and brightness produced a field that was too solid and uniform. Experiment 001-002 introduced the 4K color field, high-contrast masks, anisotropic mapping, and true black separation, but was too dark and band-like. Experiment 001-003 broadened and softened the masks and improved visibility, although horizontal banding remained in the lower-right amber cloud. Experiment 001-004 uses the historical production noise images for broad structure and restrained procedural noise for internal variation. This resolves most of the regular banding and produces more organic silhouettes while preserving a dark central region, although it is somewhat darker and more subdued than 001-003.
+Experiment 001-001 established the pipeline, but its alpha coverage and brightness produced a field that was too solid and uniform. Experiment 001-002 introduced the 4K color field, high-contrast masks, anisotropic mapping, and true black separation, but was too dark and band-like. Experiment 001-003 broadened and softened the masks and improved visibility, although horizontal banding remained in the lower-right amber cloud. Experiment 001-004 uses the historical production noise images for broad structure and restrained procedural noise for internal variation, resolving most of the regular banding while preserving a dark central region. Experiment 001-005 changes only the shared color source to the blurred 4K variant, smoothing broad color transitions without eliminating useful cloud texture. Experiment 001-006 gives cloud03 a gentler historical-mask remap in an attempt to smooth its lower-right bubble-like contour. The alpha transition improves slightly, but the colored circular contour largely remains, indicating that it primarily originates in the blurred color field rather than the mask.
